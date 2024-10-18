@@ -87,12 +87,28 @@ void GameManager::update(float dt)
     _powerupManager->update(dt);
 }
 
-void GameManager::loseLife()
+void GameManager::loseLife(float dt)
 {
     _lives--;
     _ui->lifeLost(_lives);
 
-    // TODO screen shake.
+    sf::View view = _window->getDefaultView();
+
+    float elapsedTime = shakeClock.getElapsedTime().asSeconds();
+    
+    if (elapsedTime < 10) {
+        float offsetX = (std::rand() % 50) / 50 * 5;
+        float offsetY = (std::rand() % 50) / 50 * 5;
+        view.move(offsetX, offsetY);
+        _window->setView(view);
+    }
+    //else {
+        shakeClock.restart();
+    
+
+
+    _window->setView(_window->getDefaultView());
+
 }
 
 void GameManager::render()
