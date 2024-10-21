@@ -85,6 +85,26 @@ void GameManager::update(float dt)
     _paddle->update(dt);
     _ball->update(dt);
     _powerupManager->update(dt);
+
+
+    //screen shake
+    elapsedTimeScreenShake += shakeClock.getElapsedTime().asSeconds(); //timer for how long screen should shake
+    sf::View view = _window->getDefaultView();
+    if (screenShaking)//if the player lost a life
+    {
+        //move the screen randomly
+        float offsetX = (static_cast<float>(std::rand() % 50) / 50) * 5;
+        float offsetY = (static_cast<float>(std::rand() % 50) / 50) * 5;
+        view.move(offsetX, offsetY);
+        _window->setView(view);
+    }
+
+    if (elapsedTimeScreenShake > 2000)//if the time has ran out then stop shaking the screen
+    {
+       screenShaking = false;
+        _window->setView(_window->getDefaultView());
+        elapsedTimeScreenShake = 0.0f;
+    }
 }
 
 void GameManager::loseLife(float dt)
@@ -92,23 +112,7 @@ void GameManager::loseLife(float dt)
     _lives--;
     _ui->lifeLost(_lives);
 
-    sf::View view = _window->getDefaultView();
-
-    float elapsedTime = shakeClock.getElapsedTime().asSeconds();
-    
-    if (elapsedTime < 10) {
-        float offsetX = (std::rand() % 50) / 50 * 5;
-        float offsetY = (std::rand() % 50) / 50 * 5;
-        view.move(offsetX, offsetY);
-        _window->setView(view);
-    }
-    //else {
-        shakeClock.restart();
-    
-
-
-    _window->setView(_window->getDefaultView());
-
+    screenShaking = true;
 }
 
 void GameManager::render()

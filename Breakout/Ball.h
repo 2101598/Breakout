@@ -24,6 +24,7 @@ private:
     bool _isFireBall;
     float _timeWithPowerupEffect;
 
+
     GameManager* _gameManager;  // Reference to the GameManager
 
 

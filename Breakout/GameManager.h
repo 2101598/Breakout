@@ -34,7 +34,8 @@ private:
     float _timeLastPowerupSpawned;
     int _lives;
     bool _levelComplete;
-   // float elapsedTime;
+    bool screenShaking = false;
+    float elapsedTimeScreenShake = 0.0f;
     std::pair<POWERUPS, float> _powerupInEffect;
 
     sf::Font _font;

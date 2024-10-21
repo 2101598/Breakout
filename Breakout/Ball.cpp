@@ -67,6 +67,10 @@ void Ball::update(float dt)
         _gameManager->loseLife(dt);
     }
 
+    
+
+   
+
     // collision with paddle
     if (_sprite.getGlobalBounds().intersects(_gameManager->getPaddle()->getBounds()))
     {
