@@ -33,6 +33,17 @@ void Paddle::moveRight(float dt)
     }
 }
 
+void Paddle::mouseMovement(float dt)
+{
+    sf::Vector2i position = mouse.getPosition(*_window);//get current mouse postion 
+    if (position.x < _window->getSize().x && position.x > 0)//check if mouse postion is within the window
+    {
+        _sprite.setPosition(position.x, _window->getSize().y - 50.0f); // set paddle to mouse x position
+    }
+}
+
+
+
 void Paddle::update(float dt)
 {
     if (_timeInNewSize > 0)
