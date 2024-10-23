@@ -33,3 +33,11 @@ fire ball (green)
 
 # Time Details and Changelist
 <Add information to this section about the time you've taken for this task along with a professional changelist.>
+
+
+change list
+
+bug fixed, work on screen shake- Friday Oct 18 2:57pm took 1h 40 mins
+screen shake on death implemented- Monday Oct 21 6:35pm took 50 mins
+added mouse controls- Wednesday Oct 23 09:21am took 40 mins mins
+
